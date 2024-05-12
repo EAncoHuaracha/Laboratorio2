@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcqoff6x8avyv"]
+
+[ext_resource type="Texture2D" uid="uid://pntwpno8dth3" path="res://Assets/fondo/montana.png" id="1_eivgw"]
+[ext_resource type="Texture2D" uid="uid://bau2jj45tchah" path="res://Assets/fondo/engranaje.png" id="2_o732o"]
+[ext_resource type="Texture2D" uid="uid://uyrn4ex803hv" path="res://Assets/fondo/antena.png" id="3_k8t2r"]
+
+[sub_resource type="Animation" id="Animation_rmd0x"]
+resource_name = "Engranaje"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Engranaje:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y8flc"]
+_data = {
+"Engranaje": SubResource("Animation_rmd0x")
+}
+
+[node name="Monte" type="Node2D"]
+
+[node name="Montana" type="Sprite2D" parent="."]
+position = Vector2(374, 365)
+texture = ExtResource("1_eivgw")
+
+[node name="Engranaje" type="Sprite2D" parent="."]
+position = Vector2(677, 409)
+texture = ExtResource("2_o732o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y8flc")
+}
+autoplay = "Engranaje"
+
+[node name="Antena" type="Sprite2D" parent="."]
+position = Vector2(1400, 453)
+scale = Vector2(0.35619, 0.345263)
+texture = ExtResource("3_k8t2r")

@@ -1,0 +1,154 @@
+[gd_scene load_steps=22 format=3 uid="uid://b8odao86s47b1"]
+
+[ext_resource type="Script" path="res://Scripts/enemigo_dirigido.gd" id="1_h33sx"]
+[ext_resource type="Texture2D" uid="uid://cmtxc8s3rfy6t" path="res://Assets/enemigos/enemigo2.png" id="1_o3ukh"]
+[ext_resource type="Texture2D" uid="uid://bgi1ghinc5rfr" path="res://Assets/enemigos/explosion.png" id="2_a8ype"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlkht"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(0, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpj32"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(200, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wosj"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(400, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svr6m"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(600, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3vkk"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(800, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arnqg"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(1000, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3mtq"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(1200, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5nok"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(1400, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iryl3"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(1600, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87bls"]
+atlas = ExtResource("2_a8ype")
+region = Rect2(1800, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhuo3"]
+atlas = ExtResource("1_o3ukh")
+region = Rect2(0, 0, 146, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40rfe"]
+atlas = ExtResource("1_o3ukh")
+region = Rect2(146, 0, 146, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx87g"]
+atlas = ExtResource("1_o3ukh")
+region = Rect2(292, 0, 146, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8dna"]
+atlas = ExtResource("1_o3ukh")
+region = Rect2(438, 0, 146, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxqc8"]
+atlas = ExtResource("1_o3ukh")
+region = Rect2(584, 0, 146, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov3kv"]
+atlas = ExtResource("1_o3ukh")
+region = Rect2(730, 0, 146, 95)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhoy6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlkht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpj32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wosj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svr6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3vkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arnqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3mtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5nok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iryl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87bls")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhuo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40rfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx87g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8dna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxqc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov3kv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3mj3k"]
+radius = 11.9982
+height = 120.052
+
+[node name="EnemigoDirigido" type="Area2D" groups=["enemigo"]]
+position = Vector2(36, -359)
+script = ExtResource("1_h33sx")
+velocidad = 100
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xhoy6")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 16)
+rotation = 1.58829
+shape = SubResource("CapsuleShape2D_3mj3k")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

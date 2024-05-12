@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://djxfm5jvau43x"]
+
+[ext_resource type="Texture2D" uid="uid://b2v0uo4tf33gx" path="res://Assets/disparo/disparo.png" id="1_3q8a8"]
+[ext_resource type="Script" path="res://Scripts/Disparo.gd" id="1_uv5n0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mqh6"]
+atlas = ExtResource("1_3q8a8")
+region = Rect2(0, 0, 60, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkyfm"]
+atlas = ExtResource("1_3q8a8")
+region = Rect2(60, 0, 60, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13pfx"]
+atlas = ExtResource("1_3q8a8")
+region = Rect2(120, 0, 60, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh28s"]
+atlas = ExtResource("1_3q8a8")
+region = Rect2(180, 0, 60, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msqln"]
+atlas = ExtResource("1_3q8a8")
+region = Rect2(240, 0, 60, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f81e2"]
+atlas = ExtResource("1_3q8a8")
+region = Rect2(300, 0, 60, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a2ao"]
+atlas = ExtResource("1_3q8a8")
+region = Rect2(360, 0, 60, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfkf7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mqh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkyfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13pfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rh28s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msqln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f81e2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a2ao")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 40.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_txafo"]
+radius = 4.98771
+height = 31.9739
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drydn"]
+size = Vector2(9, 15)
+
+[node name="Disparo" type="RigidBody2D"]
+gravity_scale = 0.0
+linear_velocity = Vector2(1500, 0)
+script = ExtResource("1_uv5n0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gfkf7")
+animation = &"idle"
+frame_progress = 0.449549
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+rotation = 1.55886
+shape = SubResource("CapsuleShape2D_txafo")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(19, -1)
+shape = SubResource("RectangleShape2D_drydn")
+debug_color = Color(0.932998, 0.222862, 0.34393, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-14, 0)
+scale = Vector2(0.5, 0.55)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

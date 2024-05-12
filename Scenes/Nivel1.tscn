@@ -1,0 +1,123 @@
+[gd_scene load_steps=11 format=3 uid="uid://cemdsw08flq7r"]
+
+[ext_resource type="PackedScene" uid="uid://d0sbju807lvij" path="res://Scenes/personaje.tscn" id="1_dn4vu"]
+[ext_resource type="Texture2D" uid="uid://bvenggo4ydjp5" path="res://Assets/fondo/fondo.jpg" id="1_mrdig"]
+[ext_resource type="Texture2D" uid="uid://bg45rt3kwu0b5" path="res://Assets/hud/barra_vida.png" id="1_xnums"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="2_8qhej"]
+[ext_resource type="PackedScene" uid="uid://jl11j24csoot" path="res://Scenes/grupo_enemigos.tscn" id="2_pylj3"]
+[ext_resource type="Texture2D" uid="uid://3hf2xc3npgw6" path="res://Assets/hud/vida.png" id="2_s6ia5"]
+[ext_resource type="Texture2D" uid="uid://dhk5xinb25qy5" path="res://Assets/hud/tabla_puntos.png" id="3_3grtg"]
+[ext_resource type="PackedScene" uid="uid://b8odao86s47b1" path="res://Scenes/enemigo_dirigido.tscn" id="3_pd8kc"]
+[ext_resource type="FontFile" uid="uid://ci4phx57njjf4" path="res://Assets/fonts/Kubika Font/Kubika Rough.ttf" id="4_4k8x4"]
+[ext_resource type="PackedScene" uid="uid://bcqoff6x8avyv" path="res://Scenes/monte.tscn" id="6_n1m3v"]
+
+[node name="Nivel1" type="Node2D"]
+position = Vector2(194, 479)
+
+[node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
+
+[node name="BarraVida" type="TextureRect" parent="HUD"]
+offset_left = 45.0
+offset_top = 36.0
+offset_right = 437.0
+offset_bottom = 137.0
+texture = ExtResource("1_xnums")
+
+[node name="Vida" type="TextureRect" parent="HUD/BarraVida"]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 38.0
+offset_right = 214.0
+offset_bottom = 78.0
+scale = Vector2(1.04, 0.52)
+texture = ExtResource("2_s6ia5")
+
+[node name="Vida2" type="TextureRect" parent="HUD/BarraVida"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 38.0
+offset_right = 290.0
+offset_bottom = 78.0
+scale = Vector2(1.04, 0.52)
+texture = ExtResource("2_s6ia5")
+
+[node name="Vida3" type="TextureRect" parent="HUD/BarraVida"]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 38.0
+offset_right = 368.0
+offset_bottom = 78.0
+scale = Vector2(1.04, 0.52)
+texture = ExtResource("2_s6ia5")
+
+[node name="BarraPuntos" type="TextureRect" parent="HUD"]
+offset_left = 1574.0
+offset_top = 19.0
+offset_right = 1900.0
+offset_bottom = 120.0
+texture = ExtResource("3_3grtg")
+
+[node name="Label" type="Label" parent="HUD/BarraPuntos"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 30.0
+offset_right = 262.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("4_4k8x4")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(5760, 0)
+
+[node name="Fondo" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(2880, 540)
+texture = ExtResource("1_mrdig")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(770, 65)
+script = ExtResource("2_8qhej")
+
+[node name="Personaje" parent="Camera2D" instance=ExtResource("1_dn4vu")]
+position = Vector2(-618, -73)
+
+[node name="GrupoEnemigos" parent="." instance=ExtResource("2_pylj3")]
+
+[node name="EnemigoDirigido" parent="." instance=ExtResource("3_pd8kc")]
+position = Vector2(1457, -418)
+velocidad = 500
+
+[node name="GrupoEnemigos2" parent="." instance=ExtResource("2_pylj3")]
+position = Vector2(2821, -211)
+
+[node name="EnemigoDirigido2" parent="." instance=ExtResource("3_pd8kc")]
+position = Vector2(4055, -433)
+velocidad = 500
+
+[node name="GrupoEnemigos3" parent="." instance=ExtResource("2_pylj3")]
+position = Vector2(8005, -215)
+
+[node name="EnemigoDirigido3" parent="." instance=ExtResource("3_pd8kc")]
+position = Vector2(9239, -437)
+velocidad = 500
+
+[node name="Monte" parent="." instance=ExtResource("6_n1m3v")]
+
+[node name="Monte2" parent="." instance=ExtResource("6_n1m3v")]
+position = Vector2(2000, 0)
+
+[node name="Monte3" parent="." instance=ExtResource("6_n1m3v")]
+position = Vector2(4000, 0)
+
+[node name="Monte4" parent="." instance=ExtResource("6_n1m3v")]
+position = Vector2(6000, 0)
+
+[node name="Monte5" parent="." instance=ExtResource("6_n1m3v")]
+position = Vector2(8000, 0)
+
+[node name="Monte6" parent="." instance=ExtResource("6_n1m3v")]
+position = Vector2(10000, 0)

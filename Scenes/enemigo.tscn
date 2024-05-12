@@ -1,0 +1,145 @@
+[gd_scene load_steps=21 format=3 uid="uid://bquo0qlcxc58u"]
+
+[ext_resource type="Texture2D" uid="uid://dip51pcarinkx" path="res://Assets/enemigos/enemigo1.png" id="1_8o67f"]
+[ext_resource type="Script" path="res://Scripts/enemigo.gd" id="1_n030i"]
+[ext_resource type="Texture2D" uid="uid://bgi1ghinc5rfr" path="res://Assets/enemigos/explosion.png" id="3_ila7u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbqmp"]
+atlas = ExtResource("1_8o67f")
+region = Rect2(0, 0, 156, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7qjw"]
+atlas = ExtResource("1_8o67f")
+region = Rect2(156, 0, 156, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyjil"]
+atlas = ExtResource("1_8o67f")
+region = Rect2(312, 0, 156, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7a2w"]
+atlas = ExtResource("1_8o67f")
+region = Rect2(468, 0, 156, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbdgq"]
+atlas = ExtResource("1_8o67f")
+region = Rect2(624, 0, 156, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csx0f"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(0, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1kpl"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(200, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxe50"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(400, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1l78"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(600, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2pg0"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(800, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tfrd"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(1000, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rgop"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(1200, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqbkf"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(1400, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s4lm"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(1600, 0, 200, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd2fh"]
+atlas = ExtResource("3_ila7u")
+region = Rect2(1800, 0, 200, 170)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wju8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbqmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7qjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyjil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7a2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbdgq")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csx0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1kpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxe50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1l78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2pg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tfrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rgop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqbkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s4lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd2fh")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5vcml"]
+radius = 36.0447
+height = 133.935
+
+[node name="Enemigo" type="Area2D" groups=["enemigo"]]
+rotation = -1.79662
+script = ExtResource("1_n030i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wju8b")
+animation = &"explosion"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.99395, 9.00273)
+rotation = 1.53975
+shape = SubResource("CapsuleShape2D_5vcml")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
